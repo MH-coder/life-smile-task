@@ -15,7 +15,9 @@ export const useUsersQuery = ({ limit, page = 1, search }: Props) => {
     ["users", page, search],
     async () => {
       const response = await fetch(
-        `${usersApiEndpoint}/search?q=${search}&limit=${limit}&skip=${page}`
+        search !== ""
+          ? `${usersApiEndpoint}/search?q=${search}`
+          : `${usersApiEndpoint}/search?q=${search}&limit=${limit}&skip=${page}`
       );
       const users: any = await response.json();
 

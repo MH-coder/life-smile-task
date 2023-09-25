@@ -73,7 +73,7 @@ const User = () => {
 
       <div className="flex justify-end space-x-6 px-6 mt-8 text-white items-center">
         <LinkButton
-          disabled={pageNumber <= 1}
+          disabled={pageNumber <= 1 || debouncedSearchValue !== ""}
           clickHandler={() => {
             setPageNumber((currentPageNum) => currentPageNum - 1);
           }}
@@ -84,7 +84,9 @@ const User = () => {
         <span className="mx-2">{pageNumber}</span>
 
         <LinkButton
-          disabled={pageNumber >= 3 || data?.total < 10}
+          disabled={
+            pageNumber >= 3 || data?.total < 10 || debouncedSearchValue !== ""
+          }
           clickHandler={() => {
             setPageNumber((currentPageNum) => currentPageNum + 1);
           }}
