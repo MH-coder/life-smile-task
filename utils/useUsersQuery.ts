@@ -24,6 +24,7 @@ export const useUsersQuery = ({ limit, page = 1, search }: Props) => {
       return users;
     },
     {
+      staleTime: 1 * 60 * 1000,
       refetchOnWindowFocus: false,
     }
   );
